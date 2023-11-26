@@ -1,6 +1,7 @@
-package com.pmj.quizapp.dao;
+package com.pmj.questionservice.dao;
 
-import com.pmj.quizapp.model.Question;
+
+import com.pmj.questionservice.model.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

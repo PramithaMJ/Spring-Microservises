@@ -1,11 +1,12 @@
-package com.pmj.quizapp.service;
+package com.pmj.questionservice.service;
 
-import com.pmj.quizapp.dao.QuestionDao;
-import com.pmj.quizapp.model.Question;
+import com.pmj.questionservice.dao.QuestionDao;
+import com.pmj.questionservice.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.pmj.quizapp.model;
+package com.pmj.questionservice.model;
 
 import lombok.Data;
 
