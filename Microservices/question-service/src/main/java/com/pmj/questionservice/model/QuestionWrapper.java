@@ -1,8 +1,10 @@
 package com.pmj.questionservice.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class QuestionWrapper {
 
     private Integer questionId;

@@ -2,6 +2,7 @@ package com.pmj.questionservice.service;
 
 import com.pmj.questionservice.dao.QuestionDao;
 import com.pmj.questionservice.model.Question;
+import com.pmj.questionservice.model.QuestionWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,6 +84,29 @@ public class QuestionService {
         List<Integer> questions = questionDao.findRandomQuestionByCategory(categoryName,numQuestions);
 
       return new ResponseEntity<>(questions,HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(List<Integer> quesionIds) {
+        List<QuestionWrapper> wrappers = new ArrayList<>();
+        List<Question> questions = new ArrayList<>();
+
+        for (Integer id : quesionIds){
+            questions.add(questionDao.findById(id).get());
+        }
+
+        for (Question question : questions){
+            QuestionWrapper wrapper = new QuestionWrapper();
+            wrapper.setQuestionId(question.getQuestionId());
+            wrapper.setQuestionTitle(question.getQuestionTitle());
+            wrapper.setOption1(question.getOption1());
+            wrapper.setOption2(question.getOption2());
+            wrapper.setOption3(question.getOption3());
+            wrapper.setOption4(question.getOption4());
+
+            wrappers.add(wrapper);
+        }
+
+        return new ResponseEntity<>(wrappers,HttpStatus.OK);
     }
 }
 

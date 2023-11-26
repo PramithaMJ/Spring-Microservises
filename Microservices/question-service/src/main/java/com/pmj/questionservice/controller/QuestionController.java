@@ -2,6 +2,7 @@ package com.pmj.questionservice.controller;
 
 
 import com.pmj.questionservice.model.Question;
+import com.pmj.questionservice.model.QuestionWrapper;
 import com.pmj.questionservice.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,11 @@ public class QuestionController {
     public ResponseEntity<List<Integer>> getQuestionsForQuiz
             (@RequestParam String categoryName,@RequestParam Integer numQuestions){
         return questionService.getQuestionsForQuiz(categoryName, numQuestions);
+    }
+
+    @PostMapping("getQuestions")
+    public ResponseEntity<List<QuestionWrapper>> getQuestionFromId(@RequestBody List<Integer> quesionIds){
+        return questionService.getQuestionsFromId(quesionIds);
     }
 
     // generate
