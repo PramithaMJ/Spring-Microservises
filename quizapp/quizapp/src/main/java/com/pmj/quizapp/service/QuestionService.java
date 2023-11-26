@@ -3,8 +3,11 @@ package com.pmj.quizapp.service;
 import com.pmj.quizapp.dao.QuestionDao;
 import com.pmj.quizapp.entity.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,33 +16,45 @@ public class QuestionService {
 
     @Autowired
     QuestionDao questionDao;
-    public List<Question> getAllQuestions() {
-        return questionDao.findAll();
+    public ResponseEntity<List<Question>> getAllQuestions() {
+        try{
+            return new ResponseEntity<>(questionDao.findAll(), HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
     }
 
-
-    public List<Question> getQuestionByCategory(String category) {
-        return questionDao.findByCategory(category);
+    public ResponseEntity<List<Question>> getQuestionByCategory(String category) {
+        try {
+            return new ResponseEntity<>(questionDao.findByCategory(category),HttpStatus.OK) ;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new ArrayList<>(),HttpStatus.OK) ;
     }
 
-    public String addQuestion(Question question) {
+    public ResponseEntity<String> addQuestion(Question question) {
         questionDao.save(question);
-        return "saved";
+        return new ResponseEntity<>("saved",HttpStatus.CREATED);
     }
 
-    public String deleteQuestion(int questionId) {
+    public ResponseEntity<String> deleteQuestion(int questionId) {
         questionDao.deleteById(questionId);
-        return "deleted";
+        return new ResponseEntity<>("deleted",HttpStatus.OK);
     }
-//    public String updateQuestion(int questionId,Question question) {
-//        questionDao.findAllById(questionId) {
-//            questionDao.save(question);
-//
-//        }
-//        return "updated";
-//    }
 
-    public String updateQuestion(int questionId, Question updatedQuestion) {
+  /*
+  public String updateQuestion(int questionId,Question question) {
+        questionDao.findAllById(questionId) {
+            questionDao.save(question);
+
+        }
+        return "updated";
+    }
+    */
+
+    public ResponseEntity<String> updateQuestion(int questionId, Question updatedQuestion) {
         Optional<Question> existingQuestionOptional = questionDao.findById(questionId);
 
         if (((Optional<?>) existingQuestionOptional).isPresent()) {
@@ -58,9 +73,9 @@ public class QuestionService {
             // Save the updated question
             questionDao.save(existingQuestion);
 
-            return "updated";
+            return new ResponseEntity<>("updated",HttpStatus.CREATED);
         } else {
-            return "Question not found";
+            return new ResponseEntity<>("Question not found",HttpStatus.BAD_REQUEST);
         }
     }
 
