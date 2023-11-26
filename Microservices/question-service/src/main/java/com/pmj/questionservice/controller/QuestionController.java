@@ -39,6 +39,12 @@ public class QuestionController {
         return questionService.deleteQuestion(questionId);
     }
 
+    @GetMapping("/generate")
+    public ResponseEntity<List<Integer>> getQuestionsForQuiz
+            (@RequestParam String categoryName,@RequestParam Integer numQuestions){
+        return questionService.getQuestionsForQuiz(categoryName, numQuestions);
+    }
+
     // generate
     // getQuestion (questionId)
     // get Score
