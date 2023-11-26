@@ -1,4 +1,4 @@
-package com.pmj.quizapp.entity;
+package com.pmj.quizapp.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

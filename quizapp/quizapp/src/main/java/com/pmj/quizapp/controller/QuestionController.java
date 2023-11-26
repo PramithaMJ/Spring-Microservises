@@ -1,6 +1,6 @@
 package com.pmj.quizapp.controller;
 
-import com.pmj.quizapp.entity.Question;
+import com.pmj.quizapp.model.Question;
 import com.pmj.quizapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
