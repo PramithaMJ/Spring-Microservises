@@ -28,9 +28,9 @@ public class QuestionController {
         return questionService.addQuestion(question);
     }
 
-    @PutMapping("/updateQuestion")
-    public String updateQuestion(@RequestBody Question question){
-        return questionService.updateQuestion(question);
+    @PutMapping("/updateQuestion/{questionId}")
+    public String updateQuestion(@PathVariable int questionId,@RequestBody Question question){
+        return questionService.updateQuestion(questionId,question);
     }
     @DeleteMapping("/deleteData/{questionId}")
     public String deleteQuestion(@PathVariable int questionId){
