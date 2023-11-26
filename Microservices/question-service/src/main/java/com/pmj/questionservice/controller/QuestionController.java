@@ -3,6 +3,7 @@ package com.pmj.questionservice.controller;
 
 import com.pmj.questionservice.model.Question;
 import com.pmj.questionservice.model.QuestionWrapper;
+import com.pmj.questionservice.model.Response;
 import com.pmj.questionservice.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +50,11 @@ public class QuestionController {
     @PostMapping("getQuestions")
     public ResponseEntity<List<QuestionWrapper>> getQuestionFromId(@RequestBody List<Integer> quesionIds){
         return questionService.getQuestionsFromId(quesionIds);
+    }
+
+    @PostMapping("getScore")
+    public ResponseEntity<Integer> getScore(@RequestBody List<Response> responses){
+        return questionService.getScore(responses);
     }
 
     // generate
