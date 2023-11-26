@@ -8,7 +8,7 @@ import lombok.Data;
 @Table(name = "question")
 public class Question {
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int questionId;
 
     private String category;
@@ -26,7 +26,5 @@ public class Question {
     private String questionTitle;
 
     private String rightAnswer;
-
-
 
 }
