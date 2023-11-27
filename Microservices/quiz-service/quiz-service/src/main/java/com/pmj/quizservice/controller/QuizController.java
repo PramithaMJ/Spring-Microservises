@@ -2,6 +2,8 @@ package com.pmj.quizservice.controller;
 
 
 import com.pmj.quizservice.model.QuestionWrapper;
+import com.pmj.quizservice.model.QuizDto;
+import com.pmj.quizservice.model.Response;
 import com.pmj.quizservice.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,8 @@ public class QuizController {
     @Autowired
     QuizService quizService;
     @PostMapping("/create")
-    public ResponseEntity<String> createQuiz(@RequestParam String category,@RequestParam int numQ,@RequestParam String title){
-        return quizService.createQuiz(category,numQ,title);
+    public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto){
+        return quizService.createQuiz(quizDto.getCategoryName(),quizDto.getNumQuestions(),quizDto.getTitle());
     }
     @GetMapping("get/{id}")
     public ResponseEntity<List<QuestionWrapper>> getQuestion(@PathVariable Integer id){
