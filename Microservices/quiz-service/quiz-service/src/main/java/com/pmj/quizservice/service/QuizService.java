@@ -2,6 +2,7 @@ package com.pmj.quizservice.service;
 
 
 import com.pmj.quizservice.dao.QuizDao;
+import com.pmj.quizservice.feign.QuizInterface;
 import com.pmj.quizservice.model.QuestionWrapper;
 import com.pmj.quizservice.model.Quiz;
 import com.pmj.quizservice.model.Response;
@@ -20,18 +21,15 @@ public class QuizService {
     @Autowired
     QuizDao quizDao;
 
-//    @Autowired
-//    QuestionDao questionDao;
+    @Autowired
+    QuizInterface quizInterface;
 
     public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
 
-        //List<Question> questions = // call the generate url - RestTemplate http://localhost:8080/question/generete
-//        Quiz quiz = new Quiz();
-//
-//        quiz.setTitle(title);
-//        quiz.setQuestions(questions);
-//
-//        quizDao.save(quiz);
+        List<Integer> questions = quizInterface.getQuestionsForQuiz(category,numQ).getBody();
+        Quiz quiz = new Quiz();
+        quiz.setQuestionIds(questions);
+        quizDao.save(quiz);
 
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
