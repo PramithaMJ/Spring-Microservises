@@ -25,7 +25,7 @@ public class QuizService {
 
     public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
 
-        List<Question> questions = // call the generate url - RestTemplate http://localhost:8080/question/generete
+        //List<Question> questions = // call the generate url - RestTemplate http://localhost:8080/question/generete
 //        Quiz quiz = new Quiz();
 //
 //        quiz.setTitle(title);
